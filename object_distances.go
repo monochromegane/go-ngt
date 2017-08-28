@@ -18,8 +18,8 @@ type NGTObjectDistances struct {
 }
 
 type NGTObjectDistance struct {
-	id       uint
-	distance float64
+	Id       uint
+	Distance float64
 }
 
 func (o NGTObjectDistances) getResults() ([]NGTObjectDistance, error) {
@@ -40,8 +40,8 @@ func (o NGTObjectDistances) getResults() ([]NGTObjectDistance, error) {
 			return nil, err
 		}
 		results[i] = NGTObjectDistance{
-			id:       uint(cResult.id),
-			distance: float64(cResult.distance),
+			Id:       uint(cResult.id),
+			Distance: float64(cResult.distance),
 		}
 	}
 	return results, nil
