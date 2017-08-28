@@ -30,6 +30,7 @@ for i := 0; i < dim; i++ {
 	obj[i] = rand.Float64()
 }
 index.InsertIndex(obj)
+index.CreateIndex(24) // number of threads
 index.SaveIndex("sample_database")
 ```
 

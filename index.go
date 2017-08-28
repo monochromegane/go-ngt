@@ -69,6 +69,16 @@ func (i *NGTIndex) InsertIndex(obj []float64) (uint, error) {
 	return uint(cObjectID), newErrorFrom(ngterr)
 }
 
+func (i *NGTIndex) CreateIndex(thread int) error {
+	cThread := C.int(thread)
+
+	ngterr := newNGTError()
+	defer ngterr.free()
+
+	C.ngt_create_index(i.index, cThread, ngterr.err)
+	return newErrorFrom(ngterr)
+}
+
 func (i *NGTIndex) RemoveIndex(id uint) error {
 	cObjectID := C.ObjectID(id)
 
