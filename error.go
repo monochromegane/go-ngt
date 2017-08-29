@@ -1,6 +1,7 @@
 package ngt
 
-// #cgo LDFLAGS: -lm -lstdc++ -lngt
+// #cgo darwin LDFLAGS: -lngt -lm -lstdc++
+// #cgo linux LDFLAGS: -Wl,-Bstatic -lngt -Wl,-Bdynamic -lm -lstdc++
 // #include "NGT/Capi.h"
 // #include <stdlib.h>
 import "C"
