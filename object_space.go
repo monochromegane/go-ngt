@@ -12,7 +12,7 @@ type NGTObjectSpace struct {
 	size  int
 }
 
-func (s NGTObjectSpace) GetObjectAsFloat(id int) ([]float32, error) {
+func (s *NGTObjectSpace) GetObjectAsFloat(id int) ([]float32, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
@@ -28,7 +28,7 @@ func (s NGTObjectSpace) GetObjectAsFloat(id int) ([]float32, error) {
 	return obj, nil
 }
 
-func (s NGTObjectSpace) GetObjectAsInteger(id int) ([]uint8, error) {
+func (s *NGTObjectSpace) GetObjectAsInteger(id int) ([]uint8, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 

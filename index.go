@@ -48,7 +48,7 @@ func (i NGTIndex) getProperty() (NGTProperty, error) {
 	return property, newErrorFrom(ngterr)
 }
 
-func (i NGTIndex) SaveIndex(database string) error {
+func (i *NGTIndex) SaveIndex(database string) error {
 	cDatabase := C.CString(database)
 	defer C.free(unsafe.Pointer(cDatabase))
 
@@ -116,7 +116,7 @@ func (i *NGTIndex) Close() {
 	C.ngt_close_index(i.index)
 }
 
-func (i NGTIndex) Search(query []float64, size int, epsilon float32) ([]NGTObjectDistance, error) {
+func (i *NGTIndex) Search(query []float64, size int, epsilon float32) ([]NGTObjectDistance, error) {
 	cQuery := (*C.double)(&query[0])
 	cQueryDim := C.int(len(query))
 	cSize := C.int(size)

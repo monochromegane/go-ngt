@@ -23,7 +23,7 @@ type NGTObjectDistance struct {
 	Distance float64
 }
 
-func (o NGTObjectDistances) getResults() ([]NGTObjectDistance, error) {
+func (o *NGTObjectDistances) getResults() ([]NGTObjectDistance, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
