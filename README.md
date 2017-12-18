@@ -1,4 +1,4 @@
-# go-ngt
+# go-ngt [![Build Status](https://travis-ci.org/monochromegane/go-ngt.svg?branch=master)](https://travis-ci.org/monochromegane/go-ngt)
 
 NGT binding for golang.
 
