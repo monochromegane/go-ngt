@@ -61,7 +61,7 @@ func (i *NGTIndex) SaveIndex(database string) error {
 
 func (i *NGTIndex) InsertIndex(obj []float64) (uint, error) {
 	cObj := (*C.double)(&obj[0])
-	cObjDim := C.int(len(obj))
+	cObjDim := C.uint32_t(len(obj))
 
 	ngterr := newNGTError()
 	defer ngterr.free()
@@ -71,7 +71,7 @@ func (i *NGTIndex) InsertIndex(obj []float64) (uint, error) {
 }
 
 func (i *NGTIndex) CreateIndex(thread int) error {
-	cThread := C.int(thread)
+	cThread := C.uint32_t(thread)
 
 	ngterr := newNGTError()
 	defer ngterr.free()
@@ -118,8 +118,8 @@ func (i *NGTIndex) Close() {
 
 func (i *NGTIndex) Search(query []float64, size int, epsilon float32) ([]NGTObjectDistance, error) {
 	cQuery := (*C.double)(&query[0])
-	cQueryDim := C.int(len(query))
-	cSize := C.int(size)
+	cQueryDim := C.int32_t(len(query))
+	cSize := C.size_t(size)
 	cEpsilon := C.float(epsilon)
 
 	objectDistances, err := newNGTObjectDistances()

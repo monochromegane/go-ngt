@@ -27,16 +27,16 @@ func (o *NGTObjectDistances) getResults() ([]NGTObjectDistance, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
-	cSize := C.ngt_get_size(o.obj, ngterr.err)
+	cSize := C.ngt_get_result_size(o.obj, ngterr.err)
 	if err := newErrorFrom(ngterr); err != nil {
 		return nil, err
 	}
 
-	size := int(cSize)
+	size := uint32(cSize)
 	results := make([]NGTObjectDistance, size)
-	for i := 0; i < size; i++ {
+	for i := 0; uint32(i) < size; i++ {
 		ngterr.clear()
-		cResult := C.ngt_get_result(o.obj, C.int(i), ngterr.err)
+		cResult := C.ngt_get_result(o.obj, C.uint32_t(i), ngterr.err)
 		if err := newErrorFrom(ngterr); err != nil {
 			return nil, err
 		}

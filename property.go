@@ -7,7 +7,7 @@ package ngt
 import "C"
 import "fmt"
 
-func NewNGTProperty(dim int) (NGTProperty, error) {
+func NewNGTProperty(dim int32) (NGTProperty, error) {
 	property, err := newNGTProperty()
 	if err != nil {
 		return property, err
@@ -54,51 +54,51 @@ type NGTProperty struct {
 	property C.NGTProperty
 }
 
-func (p *NGTProperty) getDimension() (int, error) {
+func (p *NGTProperty) getDimension() (int32, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
 	cDim := C.ngt_get_property_dimension(p.property, ngterr.err)
-	return int(cDim), newErrorFrom(ngterr)
+	return int32(cDim), newErrorFrom(ngterr)
 }
 
-func (p *NGTProperty) SetDimension(dim int) error {
+func (p *NGTProperty) SetDimension(dim int32) error {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
-	C.ngt_set_property_dimension(p.property, C.int(dim), ngterr.err)
+	C.ngt_set_property_dimension(p.property, C.int32_t(dim), ngterr.err)
 	return newErrorFrom(ngterr)
 }
 
-func (p *NGTProperty) getEdgeSizeForCreation() (int, error) {
+func (p *NGTProperty) getEdgeSizeForCreation() (int16, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
 	cSize := C.ngt_get_property_edge_size_for_creation(p.property, ngterr.err)
-	return int(cSize), newErrorFrom(ngterr)
+	return int16(cSize), newErrorFrom(ngterr)
 }
 
-func (p *NGTProperty) SetEdgeSizeForCreation(size int) error {
+func (p *NGTProperty) SetEdgeSizeForCreation(size int16) error {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
-	C.ngt_set_property_edge_size_for_creation(p.property, C.int(size), ngterr.err)
+	C.ngt_set_property_edge_size_for_creation(p.property, C.int16_t(size), ngterr.err)
 	return newErrorFrom(ngterr)
 }
 
-func (p *NGTProperty) getEdgeSizeForSearch() (int, error) {
+func (p *NGTProperty) getEdgeSizeForSearch() (int16, error) {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
 	cSize := C.ngt_get_property_edge_size_for_search(p.property, ngterr.err)
-	return int(cSize), newErrorFrom(ngterr)
+	return int16(cSize), newErrorFrom(ngterr)
 }
 
-func (p *NGTProperty) SetEdgeSizeForSearch(size int) error {
+func (p *NGTProperty) SetEdgeSizeForSearch(size int16) error {
 	ngterr := newNGTError()
 	defer ngterr.free()
 
-	C.ngt_set_property_edge_size_for_search(p.property, C.int(size), ngterr.err)
+	C.ngt_set_property_edge_size_for_search(p.property, C.int16_t(size), ngterr.err)
 	return newErrorFrom(ngterr)
 }
 
@@ -107,7 +107,7 @@ func (p *NGTProperty) getObjectType() (ObjectType, error) {
 	defer ngterr.free()
 
 	cType := C.ngt_get_property_object_type(p.property, ngterr.err)
-	return ObjectType(C.int(cType)), newErrorFrom(ngterr)
+	return ObjectType(C.int32_t(cType)), newErrorFrom(ngterr)
 }
 
 func (p *NGTProperty) setObjectTypeFloat() error {
@@ -131,7 +131,7 @@ func (p *NGTProperty) getDistanceType() (DistanceType, error) {
 	defer ngterr.free()
 
 	cType := C.ngt_get_property_distance_type(p.property, ngterr.err)
-	return DistanceType(C.int(cType)), newErrorFrom(ngterr)
+	return DistanceType(C.int32_t(cType)), newErrorFrom(ngterr)
 }
 
 func (p *NGTProperty) setDistanceTypeL1() error {
